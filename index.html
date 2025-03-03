@@ -52,7 +52,7 @@
   .rotate {
     animation: rotation 7s infinite linear;
     position: absolute;
-    top: 1000px;
+    top: 760px;
     left: -40%;
     width: 350px;
     height: 350px;
@@ -73,7 +73,7 @@
     position: absolute;
     box-sizing: border-box;
     transform: translate(-50%, -50%);
-    font-size: 90px;
+    font-size: 70px;
     bottom: 0px;
     left: 49%;
   }
@@ -162,42 +162,65 @@
 <body>
   <section class="container">
     <div>
-      <image src="b1.jpeg" class="img" height="100vh" width="100%" />
+      <image src="b1.jpg" class="img" height="100vh" width="100%" />
     </div>
     <div>
       <image src="b2.jpg" class="img" height="100vh" width="100%" />
     </div>
     <div>
-      <image src="b3.jpeg" class="img" height="100vh" width="100%" />
+      <image src="b3.jpg" class="img" height="100vh" width="100%" />
     </div>
     <div>
-      <image src="b4.jpeg" class="img" height="100vh" width="100%" />
+      <image src="b4.jpg" class="img" height="100vh" width="100%" />
     </div>
     <div class="wf">
       <h2>SONIA</h2>
       <h2>SONIA</h2>
     </div>
     <div>
-      <image src="b5.jpeg" class="img" height="710px" width="100%" />
+      <image src="b5.jpg" class="img" height="710px" width="100%" />
     </div>
     <div>
-      <h3 class="doa">Happy birthday son semoga panjang umur, semoga makin cantik, makin sehat, makin kaya 🤭🤣 semoga di
-        tahun ini semua doa mu terkabulkan
-        <br>Wish u all the best lah pokoknya</h3>
-      <img src="piring.png" class="rotate" alt="Music Icon" onclick="playSound('daylight.mp3')">
-    </div>
-  </section>
-  
+  <h3 class="doa">Happy birthday son semoga panjang umur, semoga makin cantik, makin sehat, makin kaya  semoga di
+    tahun ini semua doa mu terkabulkan
+    <br>Wish u all the best lah pokoknya</h3>
+  <img id="musicIcon" src="piring.png" class="rotate" alt="Music Icon">
+  <button id="stopButton" style="display: none;">Stop Music</button>
+</div>
+
+</section>
+
 <script>
+  let audio = new Audio('daylight.mp3');
+  audio.loop = true;
+  audio.volume = 0.8;
+  let isPlaying = false;
+
+  // Fungsi untuk memulai musik secara otomatis saat halaman dimuat
   window.onload = function() {
-      let audio = new Audio('daylight.mp3'); // Ganti dengan nama file musik Anda
-      audio.loop = true;
-      audio.volume = 0.8; // Mengatur volume menjadi 80%
+    audio.play();
+    isPlaying = true;
+    document.getElementById('stopButton').style.display = 'block';
+  };
+
+  document.getElementById('musicIcon').addEventListener('click', function() {
+    if (isPlaying) {
+      audio.pause();
+      isPlaying = false;
+      document.getElementById('stopButton').style.display = 'none';
+    } else {
       audio.play();
-      alert("Musik telah dimulai! 🎵");
-  }
+      isPlaying = true;
+      document.getElementById('stopButton').style.display = 'block';
+    }
+  });
+
+  document.getElementById('stopButton').addEventListener('click', function() {
+    audio.pause();
+    isPlaying = false;
+    this.style.display = 'none';
+  });
 </script>
 
 </body>
-
 </html>
